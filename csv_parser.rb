@@ -59,7 +59,7 @@ class CSVParser
   def parse_val(val, key)
     @@parsers.each do |parser|
       # Execute any parsers that match this column
-      if not onced?(parser) && match?(parser, val, key)
+      if ! onced?(parser) && match?(parser, val, key)
         instance_exec val, key, &parser[:block]
         @executed << parser
       end
