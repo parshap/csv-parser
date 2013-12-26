@@ -1,5 +1,3 @@
-require 'csv'
-
 class CSVParser
   class << self
     @@parsers = []
@@ -22,8 +20,8 @@ class CSVParser
     end
   end
 
-  def initialize(data, options={})
-    @csv = CSV.new(data, options.merge(headers: false))
+  def initialize(csv)
+    @csv = csv
   end
 
   include Enumerable
