@@ -16,7 +16,7 @@ class CSVParser
     def parse_once(criteria, params={}, &block)
       parse criteria, {
         once: true,
-      }.merge(params), block
+      }.merge(params), &block
     end
   end
 
