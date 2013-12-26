@@ -1,12 +1,14 @@
 class CSVParser
   class << self
-    @@parsers = []
+    def parsers
+      @parsers ||= []
+    end
 
     private
 
     # Add a column parser
     def parse(criteria, params={}, &block)
-      @@parsers << {
+      parsers << {
         criteria: criteria,
         block: block,
       }.merge(params)
@@ -38,6 +40,10 @@ class CSVParser
 
   private
 
+  def parsers
+    self.class.parsers
+  end
+
   def parse_row(row)
     # Create a new attributes hash for this row, this will be our result
     @attributes = defaults
@@ -55,7 +61,7 @@ class CSVParser
 
   # Parse a column value
   def parse_val(val, key)
-    @@parsers.each do |parser|
+    parsers.each do |parser|
       # Execute any parsers that match this column
       if ! onced?(parser) && match?(parser, val, key)
         instance_exec val, key, &parser[:block]
