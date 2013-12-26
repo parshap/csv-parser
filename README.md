@@ -8,6 +8,12 @@ calling matching parsing blocks. Parsing blocks are passed the column's
 value and header key and can set arbitrary state on the *Hash* for the
 current row.
 
+## Installation
+
+```
+$ gem install parshap-csv_parser
+```
+
 ## Usage
 
 Example:
@@ -65,4 +71,10 @@ class MyParser < CSVParser
     { name: "User", emails: [] }
   end
 end
+```
+
+## Tests
+
+```
+$ ruby test.rb
 ```
