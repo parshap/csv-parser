@@ -48,7 +48,7 @@ class CSVParser
 
     # Parse each column of the row
     row.each_with_index do |val, i|
-      parse_val val.to_s.strip, @headers[i]
+      parse_val val.to_s.strip, @headers[i].to_s
     end
 
     # Return the attributes that were built using #[]=
