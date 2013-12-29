@@ -94,3 +94,8 @@ end
 ### Yield instead of returning?
 
 Should I yield the `parser` instance to a block instead of directly returning it? I guess this doesn't make too much sense for `CSVParser.new` but maybe if there was a `CSVParser.open` class method? Or does it?
+
+## TODO
+
+ * Gem
+ * Tests
