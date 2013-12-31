@@ -16,22 +16,35 @@ $ gem install parshap-csv_parser
 
 ## Usage
 
-Example:
+Given a `data.csv` file:
+
+```csv
+name,phone
+john doe,555-481-2345
+jane c doe,555-123-4567
+```
+
+You can parse it like so:
 
 ```rb
+require "csv_parser"
+
 class MyParser < CSVParser
   parse "Name" do |val|
-    self[:name] = val
+    self[:first_name], self[:last_name] = val.split(nil, 2)
+  end
+  
+  parse /Phone( Number)?/ do |val|
+    self[:phone] = val
   end
 end
 
-parser = MyParser.new CSV.open "data.csv"
-parser.each do |row|
-  puts row[:name]
+MyParser.new(CSV.open "data.csv").each do |row|
+  puts "#{row[:first_name]}, #{row[:last_name]}: #{row[:phone]}"
 end
 ```
 
-See `example.rb` and `test.rb` for more examples.
+See [`example.rb`](example.rb) and [`test.rb`](test.rb) for more examples.
 
 ### Defining Parsers
 
@@ -72,6 +85,16 @@ class MyParser < CSVParser
   end
 end
 ```
+
+### CSV Instance
+
+The `CSVParser` constructor takes an instance of the [Ruby Standard
+Library `CSV`
+class](http://ruby-doc.org/stdlib-2.1.0/libdoc/csv/rdoc/CSV.html). This
+object can be created in any way, but **the [`:headers`
+option](http://ruby-doc.org/stdlib-2.1.0/libdoc/csv/rdoc/CSV.html#method-c-new)
+must be `false`**.
+
 
 ## Tests
 
