@@ -19,7 +19,7 @@ $ gem install parshap-csv_parser
 Given a `data.csv` file:
 
 ```csv
-name,phone
+Name,Phone
 john doe,555-481-2345
 jane c doe,555-123-4567
 ```
