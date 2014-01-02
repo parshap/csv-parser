@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = "parshap-csv_parser"
-  spec.version = "1.0.0"
+  spec.version = "1.0.1"
   spec.authors = ["Parsha Pourkhomami"]
   spec.email = ["parshap+gem@gmail.com"]
   spec.summary = "High-level CSV parser"
