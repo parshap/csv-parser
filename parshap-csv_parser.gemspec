@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.summary = "High-level CSV parser"
   spec.homepage = "https://github.com/parshap/csv-parser"
   spec.license = "Public Domain"
-  spec.require_paths = ["."]
+  spec.require_paths = ["lib"]
 
   spec.files = `git ls-files`.split($/)
   spec.test_files = spec.files.grep(/^test/)
