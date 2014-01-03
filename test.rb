@@ -34,6 +34,16 @@ class RegexpParser < CSVParser
   end
 end
 
+class MethodParser < CSVParser
+  parse :foo do |val, key|
+    self[key] = val
+  end
+
+  def foo(key)
+    true
+  end
+end
+
 class CSVParserTest < Test::Unit::TestCase
   def csv
     CSV.new <<-EOF
@@ -91,5 +101,12 @@ class CSVParserTest < Test::Unit::TestCase
     assert_equal 2, array.length
     assert_equal({ "first" => "parsha" }, array[0])
     assert_equal({ "first" => "hey" }, array[1])
+  end
+
+  def test_method_criteria
+    array = MethodParser.new(csv).to_a
+    assert_equal 2, array.length
+    assert_equal({ "first" => "parsha", "last" => "pourkhomami" }, array[0])
+    assert_equal({ "first" => "hey", "last" => "you" }, array[1])
   end
 end

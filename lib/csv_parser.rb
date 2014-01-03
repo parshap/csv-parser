@@ -77,7 +77,12 @@ class CSVParser
 
   # Does the parser criteria match the column?
   def match?(parser, val, key)
-    parser[:criteria] === key
+    case criteria = parser[:criteria]
+    when Symbol
+      send criteria, key
+    else
+      criteria === key
+    end
   end
 
   # Default hash values to use for each row
