@@ -1,6 +1,6 @@
 require "test/unit"
 require "csv"
-require_relative "csv_parser"
+require_relative "lib/csv_parser"
 
 class SimpleParser < CSVParser
   attr_reader :called
